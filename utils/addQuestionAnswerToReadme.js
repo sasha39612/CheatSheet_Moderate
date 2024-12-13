@@ -3,7 +3,7 @@ const path = require("path");
 
 const pathToFile = path.join(__dirname, "../README.md");
 
-async function addQuestionToReadme(question) {
+async function addQuestionAnswerToReadme(question, answer) {
   try {
     // Read the current contents of the README.md file
     const data = await fs.promises.readFile(pathToFile, "utf8");
@@ -12,14 +12,14 @@ async function addQuestionToReadme(question) {
     const tableStart = "### Content";
     let newData = data.slice();
     if (!data.includes(tableStart)) {
-      newData += `\n\n${tableStart}\n\n| №   | Question |\n| --- | --- | --- |\n`;
+      newData += `\n\n${tableStart}\n\n| №   | Question |\n| --- | --------- |\n`;
     }
 
     // Extract existing rows to calculate the new question number
-    const matchRows = newData.match(/\| (\d+)\s+\|.*\|/g) || [];
-    const matchRowsCopy = [...matchRows];
-    const lastNumber = matchRows.length
-      ? parseInt(matchRows.pop().match(/\| (\d+)/)[1], 10)
+    const matchQuestionRows = newData.match(/\| (\d+)\s+\|.*\|/g) || [];
+    const matchRowsCopy = [...matchQuestionRows];
+    const lastNumber = matchQuestionRows.length
+      ? parseInt(matchQuestionRows.pop().match(/\| (\d+)/)[1], 10)
       : 0;
     const newNumber = lastNumber + 1;
 
@@ -37,10 +37,21 @@ async function addQuestionToReadme(question) {
         matchRowsCopy[matchRowsCopy.length - 1],
         `${matchRowsCopy[matchRowsCopy.length - 1]}\n${newRow}`
       );
+      const lastIndex = newData.lastIndexOf("**[⬆ up](#Content)**");
+      const before = newData.slice(
+        0,
+        lastIndex + "**[⬆ up](#Content)**".length
+      );
+      newData = `${before}\n\n### ${question}?\n\n${answer}\n**[⬆ up](#Content)**`;
     } else {
       newData = newData.replace(
-        `${tableStart}\n\n| №   | Question |\n| --- | --- | --- |\n`,
-        `${tableStart}\n\n| №   | Question |\n| --- | --- | --- |\n${newRow}`
+        `${tableStart}\n\n| №   | Question |\n| --- | --------- |\n`,
+        `${tableStart}\n\n| №   | Question |\n| --- | --------- |\n${newRow}`
+      );
+
+      newData = newData.replace(
+        `${tableStart}\n\n| №   | Question |\n| --- | --------- |\n${newRow}`,
+        `${tableStart}\n\n| №   | Question |\n| --- | --------- |\n${newRow}\n\n### ${question}?\n\n${answer}\n**[⬆ up](#Content)**`
       );
     }
 
@@ -52,4 +63,4 @@ async function addQuestionToReadme(question) {
   }
 }
 
-module.exports = { addQuestionToReadme };
+module.exports = { addQuestionAnswerToReadme };

@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { addQuestionToReadme } = require("./addQuestionToReadme");
+const { addQuestionAnswerToReadme } = require("./addQuestionAnswerToReadme");
 
 const pathToFile = path.join(__dirname, "../README.md");
 
@@ -25,21 +25,16 @@ async function workWithCheatSheet(questionInput, answerInput) {
     }
   }
 
-  // Append the question to the file
+  // Append the question/answer to the file
   try {
-    await fs.promises.appendFile(pathToFile, addQuestionToReadme(questionInput));
-    console.log("Question added to the file.");
+    await fs.promises.appendFile(
+      pathToFile,
+      addQuestionAnswerToReadme(questionInput, answerInput)
+    );
+    console.log("Question & answer added to the file.");
   } catch (err) {
     console.error("Error writing the question to the file:", err);
   }
-
-  // // Append the answer to the file
-  // try {
-  //   await fs.promises.appendFile(pathToFile, `Answer: ${answerInput}\n`);
-  //   console.log("Answer added to the file.");
-  // } catch (err) {
-  //   console.error("Error writing the answer to the file:", err);
-  // }
 }
 
 module.exports = { workWithCheatSheet };
