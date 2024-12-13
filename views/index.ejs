@@ -1,0 +1,42 @@
+<% include('includes/head.ejs') %>
+<link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+  <main>
+    <form class="form" action="/" method="POST">
+      <div>
+        <div class="form__label">Question:</div>
+        <textarea
+          id="question"
+          name="question"
+          rows="4"
+          cols="80"
+          class="form__textarea"
+          placeholder="Enter your question here..."
+          required
+          aria-describedby="questionBack"
+        ></textarea>
+        <div id="questionBack" class="form__questionBack" aria-live="polite"></div>
+      </div>
+
+      <div>
+        <div class="form__label">Answer:</div>
+        <textarea
+          id="answer"
+          name="answer"
+          rows="10"
+          cols="80"
+          class="form__textarea"
+          placeholder="Enter your answer here..."
+          required
+          aria-describedby="answerBack"
+        ></textarea>
+        <div id="answerBack" class="form__answerBack" aria-live="polite"></div>
+      </div>
+
+      <button type="submit" class="form__button">Save</button>
+    </form>
+  </main>
+</body>
+</html>
