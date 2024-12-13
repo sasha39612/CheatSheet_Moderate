@@ -7,6 +7,7 @@
 | 1   | [What is advantages of React?](#what-is-advantages-of-react) |
 | 2   | [What is API?](#what-is-api) |
 | 3   | [What is React?](#what-is-react) |
+| 4   | [How to work with?](#how-to-work-with) |
 
 
 ### What is advantages of React??
@@ -72,4 +73,11 @@ In order to better understand this process, it can be useful to think of APIs li
 ### What is React??
 
 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+**[⬆ up](#Content)**
+
+### How to work with??
+
+1. Enter a question
+2. Enter an answer into MARKDOWN format
+3. Press Save button :-)
 **[⬆ up](#Content)**
